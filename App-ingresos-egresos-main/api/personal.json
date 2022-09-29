@@ -1,10 +1,12 @@
-[
+{
+    "result":
+        [
     {
         "id":"1",
         "document":"1",
         "name":"Diego Armando",
         "adress":"Callao 1",
-        "phone":"500-5000",
+        "phone":"500-5001",
         "avatar":"https://www.clipartmax.com/png/middle/405-4050774_avatar-icon-flat-icon-shop-download-free-icons-for-avatar-icon-flat.png"
     },
     {
@@ -80,3 +82,4 @@
         "avatar":"https://www.clipartmax.com/png/middle/405-4050774_avatar-icon-flat-icon-shop-download-free-icons-for-avatar-icon-flat.png"
     }
 ]
+}
