@@ -19,10 +19,12 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
+const {createStaffDb} = require('./src/controllers/staff')
 
 // Syncing all the models at once.
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
+    createStaffDb();
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
 });

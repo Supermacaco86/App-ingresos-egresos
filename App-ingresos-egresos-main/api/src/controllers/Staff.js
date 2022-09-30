@@ -1,5 +1,5 @@
 const {default: axios} = require ("axios");
-const {Staffs, Process} = require("../db");
+const {Staff, Process} = require("../db");
 const { Op } = require("sequelize");
 
 async function createStaffDb(req, res){
@@ -10,7 +10,7 @@ async function createStaffDb(req, res){
             return {
                 id:e.id,
                 name:e.name,
-                address:e.adress,
+                adress:e.adress,
                 avatar:e.avatar,
                 document:e.document,
                 phone:e.phone
@@ -18,11 +18,11 @@ async function createStaffDb(req, res){
         });
     console.log("soy infApi",infApiMap)
     infApiMap.forEach(e=>{
-        Staffs.findOrCreate({
+        Staff.findOrCreate({
             where:{
                 id:e.id,
                 name:e.name,
-                addres:e.address,
+                adress:e.adress,
                 avatar:e.avatar,
                 document:e.document,
                 phone:e.phone
@@ -38,13 +38,13 @@ async function createStaffDb(req, res){
 // funcion para enviar todo  el staff
 const getAllStaff= async(req,res)=>{
     try {
-       let allStaffs =  await Staffs.findAll({
+       let allStaff =  await Staff.findAll({
             include:[{
                     model:Process,
                     attribute:["description"]
                 }]
         });
-        res.status(200).send(allStaffs)
+        res.status(200).send(allStaff)
         
     } catch (error) {
         console.log(error)
@@ -54,7 +54,7 @@ const getAllStaff= async(req,res)=>{
 // funcion para enviar el detalle del personal por id
 const getStaffById = async (req, res)=>{
     let {id} = req.params;
-    const staffById = await Staffs.findOne({
+    const staffById = await Staff.findOne({
         include:[{
             model:Process,
             attribute:["description"]
@@ -69,7 +69,7 @@ const getStaffByName= async(req,res)=>{
     const {name}= req.query;
     if(name){
         try {
-            let staffByName = await Staffs.findAll({
+            let staffByName = await Staff.findAll({
                 include:[{
                     model:Process,
                     attribute:["description"]
@@ -89,19 +89,19 @@ const getStaffByName= async(req,res)=>{
 }
 
 const postStaff = async (req, res)=>{
-    let { name,avatar, document,addres,phone} = req.body;
+    let { name,avatar, document,adress,phone} = req.body;
     try {
-        const staff = {name,avatar, document,addres,phone}
+        const staff = {name,avatar, document,adress,phone}
         if(isNaN(name)===false){
             return res.send("El valor ingresado no debe ser numerico");
 
         }
-        if(!name || !avatar || !document || !addres ||  !phone) res.send("Falta informacion");
-        const validate = await Staffs.findOne({
+        if(!name || !avatar || !document || !adress ||  !phone) res.send("Falta informacion");
+        const validate = await Staff.findOne({
             where:{document},
         })
         if(!validate){
-            const newStaff = await Staffs.create(staff);
+            const newStaff = await Staff.create(staff);
             // res.status(200).send("creado")
             res.status(200).send(`La persona ${name} con numero de documento ${document} se registro correctamente`)
 
@@ -117,10 +117,10 @@ const putStaff = async (req, res) => {
     try {
       const id = req.params.id;
       const {
-        name,avatar, document,addres, phone} = req.body;
-      const editStaff = await Staffs.update(
+        name,avatar, document,adress, phone} = req.body;
+      const editStaff = await Staff.update(
         {
-            name,avatar, document,addres, phone
+            name,avatar, document,adress, phone
         },
         { where: { id: id } }
       );
@@ -133,7 +133,7 @@ const putStaff = async (req, res) => {
   const deleteStaff = async (req, res) => {
     try {
       const id = req.params.id;
-      await Staffs.destroy({
+      await Staff.destroy({
         where: { id: id },
       });
       return res.send(" Staff deleted!");
@@ -145,12 +145,12 @@ const putStaff = async (req, res) => {
   const restoreStaff = async(req, res) => {
       let { id } = req.params;
       try {
-          await Staffs.restore({
+          await Staff.restore({
               where: {
                   id: id
               }
           });
-          const restoreStaff = await Staffs.findOne({
+          const restoreStaff = await Staff.findOne({
               where: {
                   id: id
               }
