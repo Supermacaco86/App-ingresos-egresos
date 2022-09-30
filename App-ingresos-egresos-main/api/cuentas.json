@@ -1,37 +1,37 @@
 { "cuentas":[
     {
         "id":"1",
-        "id_ account":"1.1",
+        "id_account":"1.1",
         "name_account":"Cuentas por Pagar"
     },
     {
         "id":"2",
-        "id_ account":"1.2",
+        "id_account":"1.2",
         "name_account":"Cuentas por Cobrar"
     },
     {
         "id":"3",
-        "id_ account":"1.3",
+        "id_account":"1.3",
         "name_account":"Cuentas varias"
     },
     {
         "id":"4",
-        "id_ account":"1.4",
+        "id_account":"1.4",
         "name_account":"Viaticos"
     },
     {
         "id":"5",
-        "id_ account":"1.5",
+        "id_account":"1.5",
         "name_account":"Arriendos"
     },
     {
         "id":"6",
-        "id_ account":"1.6",
+        "id_account":"1.6",
         "name_account":"Documentos por Cobrar"
     },
     {
         "id":"7",
-        "id_ account":"1.1",
+        "id_account":"1.1",
         "name_account":"Documentos por Pagar"
     }
 ],
