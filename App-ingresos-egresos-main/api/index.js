@@ -19,12 +19,14 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const {createStaffDb} = require('./src/controllers/staff')
+const {createUserDb} = require('./src/controllers/User')
+const {getInfoApiAccont} = require('./src/controllers/Account')
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
-    createStaffDb();
+    getInfoApiAccont();
+    createUserDb();
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
 });

@@ -3,7 +3,7 @@ const {DataTypes, UUIDV4} = require("sequelize")
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('staff', {
+  sequelize.define('user', {
     id:{
       type:DataTypes.STRING,
       defaultValue:UUIDV4,
@@ -31,7 +31,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    
+    balance: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   {
     createdAt: false,

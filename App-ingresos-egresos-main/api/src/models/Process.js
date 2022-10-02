@@ -15,6 +15,10 @@ module.exports = (sequelize) => {
       type: DataTypes.DATEONLY,
       allowNull: false,
     },
+    type: {
+      type:DataTypes.ENUM('egreso','ingreso'),
+      allowNull: false,
+    },
     description: {
       type: DataTypes.STRING,
       allowNull: false,

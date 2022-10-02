@@ -15,15 +15,23 @@ const getInfoApiAccont = async (req, res)=>{
             }
         })
     })
-    console.log(account)
-    res.status(200).send(account);
+    console.log("Se han cargado las cuentas correctamente.")
 }catch(error){
     console.log(error)
 }
-    
+}
 
+const getAllAccount= async(req,res)=>{
+    try {
+       let allAccount =  await Account.findAll();
+        res.status(200).send(allAccount)
+        
+    } catch (error) {
+        console.log(error)
+    } 
 }
 
 module.exports ={
-    getInfoApiAccont
+    getInfoApiAccont,
+    getAllAccount
 }

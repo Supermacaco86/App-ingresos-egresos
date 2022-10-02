@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Sequelize, HasMany, BelongsTo } = require('sequelize');
+const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
@@ -30,12 +30,12 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Account, Process, Staff } = sequelize.models;
+const { Account, Process, User } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-Staff.hasMany(Process),
-Process.belongsTo(Staff),
+User.hasMany(Process),
+Process.belongsTo(User),
 
 Account.belongsToMany(Process,{through:'account_process'}),
 Process.belongsToMany(Account,{through:'account_process'}),
