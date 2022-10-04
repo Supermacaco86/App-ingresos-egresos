@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const axios = require("axios");
-const {Account} = require("../db");
+const {Account, Process} = require("../db");
 
 const getInfoApiAccont = async (req, res)=>{
   try { 
@@ -31,7 +31,22 @@ const getAllAccount= async(req,res)=>{
     } 
 }
 
+// funcion para enviar el detalle del account por id
+const getAccountById = async (req, res)=>{
+    let {id} = req.params;
+    const accountById = await Account.findOne({
+        include:[{
+            model:Process,
+            attribute:["description"]
+        }],
+        where:{id:id}
+    })
+    res.status(200).send(accountById);
+}
+
+
 module.exports ={
     getInfoApiAccont,
-    getAllAccount
+    getAllAccount,
+    getAccountById
 }
