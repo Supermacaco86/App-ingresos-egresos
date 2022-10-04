@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
+import Button from 'react-bootstrap/Button';
 
 
 export default function Login(){
@@ -27,19 +28,23 @@ export default function Login(){
             navigate('/Home')
         }catch(error){
             console.log(error.code)
-            if(error.code === "auth/invalid-email"){
-                setError("Correo invalido")
-            }else if(error.code === "auth/email-already-in-use"){
-                setError("Usuario ya registrado")
-            }else if(error.code === "auth/weak-password"){
-                setError("La contraseña debe tener al menos 6 digitos")
-            }else if(error.code === "auth/wrong-password"){
-                setError("Contraseña incorrecta")
-            }else if(error.code === "auth/user-not-found"){
-                setError("El usuario no existe")
+            switch(error){
+                case error.code === "auth/invalid-email":
+                    setError("Correo invalido");
+                    break;
+                case error.code === "auth/email-already-in-use":
+                    setError("Usuario ya registrado");
+                    break;
+                case error.code === "auth/weak-password":
+                    setError("La contraseña debe tener al menos 6 digitos");
+                    break;
+                case error.code === "auth/wrong-password":
+                    setError("Contraseña incorrecta");
+                    break;
+                case error.code === "auth/user-not-found":
+                    setError("El usuario no existe"); 
             }
         }
-        
     }
 
     return(
@@ -55,13 +60,13 @@ export default function Login(){
 
             <label htmlFor="password">Contraseña</label>
             <input 
-            type="passsword" 
+            type="password" 
             name="password"
             id="password"
             placeholder="********" 
             onChange={handleChange}/>
 
-            <button>Ingreso</button>
+            <Button type="submit" variant="outline-dark">Ingreso</Button>
         </form>
         </div>
     )

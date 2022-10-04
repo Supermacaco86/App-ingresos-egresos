@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuth } from "../../context/authContext"
+import Button from 'react-bootstrap/Button';
 
 
 export default function Home(){
@@ -16,9 +17,9 @@ export default function Home(){
     return(
         <div>
         <h1>Bienvenido {user.email}</h1>
-        <button onClick={handleLogaut}>
+        <Button variant="outline-dark" onClick={handleLogaut}>
             Salir
-        </button>
+        </Button>
         </div>
     )
 } 

@@ -14,22 +14,22 @@ function App() {
   return (
     <BrowserRouter> 
       <div className="App">
-      <AuthProvider>
-        <Routes>
-          <Route path='/' exact element={<LandingPage/>}/>
-          <Route
-           path='/Home'
-           element={
-            <ProtectedRoute>
-           <Home/>
-           </ProtectedRoute>
-           }/>
-          <Route path='/Login' exact element={<Login/>}/>
-          <Route path='/Register' exact element={<Register/>}/>
-        </Routes>
-        </AuthProvider>
-      </div>
-    </BrowserRouter>
+        <AuthProvider>
+          <Routes>
+            <Route path='/' exact element={<LandingPage/>}/>
+              <Route
+                path='/Home'
+                element={
+                  <ProtectedRoute>
+                    <Home/>
+                  </ProtectedRoute>
+                  }/>
+                <Route path='/Login' exact element={<Login/>}/>
+              <Route path='/Register' exact element={<Register/>}/>
+            </Routes>
+          </AuthProvider>
+        </div>
+      </BrowserRouter>
   );
 }
 
